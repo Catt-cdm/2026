@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grimoire Quote</title>
+
+<!-- CINZEL -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+#widget {
+  position: relative;
+
+  max-width: 350px;
+  min-height: 400px;
+
+  margin: 60px auto;
+  padding: 70px 35px;
+
+  text-align: center;
+  font-family: "Cinzel", serif;
+  font-size: 1.35em;
+  color: #2C3E50;
+  font-variant-caps: petite-caps;
+  letter-spacing: 0.03em;
+}
+
+/* LÍNEAS VERTICALES RITUALES */
+#widget::before,
+#widget::after {
+  content: "";
+  position: absolute;
+  top: 90px;
+  bottom: 90px;
+  width: 1.5px;
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      #2a2a2a 10%,
+      transparent 20%,
+      #2a2a2a 35%,
+      transparent 50%,
+      #2a2a2a 65%,
+      transparent 80%,
+      #2a2a2a 90%,
+      transparent 100%
+    );
+  opacity: 0.8;
+}
+
+#widget::before { left: 8px; }
+#widget::after  { right: 8px; }
+
+
+
+/* SÍMBOLOS */
+.decor {
+  font-size: 0.9em;
+  letter-spacing: 6px;
+  margin: 35px 0;
+  opacity: 0.85;
+}
+
+.decor::before {
+  content: "•*° °*• ♫ •*° °*•";
+}
+
+/* TEXTO */
+.lyric {
+  display: block;
+  margin-top: 40px;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+/* AUTOR */
+.credit {
+  display: block;
+  margin-top: 25px;
+  font-size: 0.85em;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="widget">
+  <span class="corner tl"></span>
+  <span class="corner tr"></span>
+
+  <div class="decor"></div>
+
+  <div id="content"></div>
+
+  <div class="decor"></div>
+
+  <span class="corner bl"></span>
+  <span class="corner br"></span>
+</div>
+
+<script>
+
+/* FRASES */
+const quotations = [
+  {
+    lyric: "When you're standing on the edge. So young and hopeless. Got demons in your head. We are We are the colors in the dark",
+    credit: "We Are - ONE OK ROCK"
+  },
+  {
+    lyric: "Never tell yourself. You should be someone else. Stand up tall and say. I'm not afraid, I'm not afraid",
+    credit: "We Are - ONE OK ROCK"
+  },
+  {
+    lyric: ""ソレを信じ、続けている姿. それこそ僕らが望むべき世界. と気付くことができたなら (Si podemos darnos cuenta de que creer en eso y continuar haciéndolo es el mundo que debemos desear)",
+    credit: "Clock Strikes - ONE OK ROCK"
+  },
+  {
+    lyric: "I was born, I was born with horns. Demons couldn't shake me up. Bring it on, bring it on, bring it on. 'Cause we haven't had enough. Won't give up the fight. Make it out alive",
+    credit: "Make it out alive - ONE OK ROCK"
+  },
+  {
+    lyric: "Don't give up, it's gonna be alright. 'Cause I won't let you burn out",
+    credit: "Make it out alive - ONE OK ROCK"
+  },
+  {
+    lyric: "That we could make forever after all. Finding the gold in our darkest moments. Watching the roads turning into white roses",
+    credit: "Cinderblock Garden - All time low"
+  },
+  {
+    lyric: "Take all the ghosts and all those skeletons you hide. And bury them deep beneath the ground. Let them rest. 'Cause you weren't meant to bear that burden. Look at the roses in your garden. You can breathe now and forget",
+    credit: "Cinderblock Garden - All time low"
+  },
+  {
+    lyric: "I gotta say it's hard to be brave. When you're alone in the dark. I told myself that I wouldn't be scared But I'm still having nightmares",
+    credit: "Nightmares - All time low"
+  },
+  {
+    lyric: "Maybe it's not my weekend but it's gonna be my year. And I'm so sick of watching while the minutes pass as I go nowhere. And this is my reaction to everything I fear. 'Cause I've been going crazy, I don't wanna waste another minute here",
+    credit: "Weigthless - All Time Low"
+  },
+  {
+    lyric: "Cause you know it's what you're good at. The low road for the fast track, make every second last 'Cause you know it's what you're good at. The low road for the fast track, make every second last",
+    credit: "Dear Maria, Count me in - All Time Low"
+  },
+  {
+    lyric: "You're always laughing (ha, ha). And telling me to get my shit together The weather's not so bad in here. Happy days are closer (closer). You still find a way to keep me smiling. You're so inspiring",
+    credit: "Killing ur vibe - All Time Low"
+  },
+  {
+    lyric: "Hope you know that I'm trying. Trying to keep my shit together. In a world that wants to tear us all apart",
+    credit: "Kill ur vibe - All Time Low"
+  },
+  {
+    lyric: "Now I'm drowning, I'm sinking, it's good to feel something And I (I wanna fly) Wanna burn, I wanna die for cheap thrills again and tell me I'm alive",
+    credit: "Tell me i'm alive - All Time Low"
+  },
+  {
+    lyric: "My demons follow me wherever I go. They wanna remind me daily that I'm not in control.  And I wish they would just go get a life of their own 'Cause I need the company, but not the shade that they throw",
+    credit: "The Sound of Letting Go - All Time Low"
+  },
+  {
+    lyric: "Time to face uo ti the inevitable (all the world was sleepin') I guess it feels good to know thta I'm not alone",
+    credit: "PMA - All Time Low"
+  },
+  {
+    lyric: "Been eating healthy, touching grass And drinking happy, not to cope I'm Letting go of all my toxic traits And holding on to hope",
+    credit: "Oh no! - All Time Low"
+  },
+  {
+    lyric: "If I'm not dying inside underneath, This smiles no one believes, If I build my brand on feeling sad Do I need my broken heart back?",
+    credit: "Oh no! - All Time Low"
+  },
+  {
+    lyric: "あふれだす情熱を胸に どこまでも行くよ. まだ見ぬヒカリ 求め (Con pasión desbordante en mi corazón, iré a cualquier parte, buscando la luz que aún no he visto.)",
+    credit: "Hikari e - Babystars"
+  },
+  {
+    lyric: "When you're at the end of the road. And you lost all sense of control. And your thoughts have taken their toll. When your mind breaks the spirit of your soul. Your faith walks on broken glass And the hangover doesn't pass.  Nothing's ever built to last",
+    credit: "21 guns - Green day"
+  },
+  {
+    lyric: "Sometimes it's a battle, At times it's a war, But you're never defenseless. Sometimes we all lose strength. Please don't lose your faith",
+    credit: "Madness - Sleeping With Sirens"
+  },
+  {
+    lyric: "After our time has passed, We're like light through stained glass, We go on and on and on, In the end we're never gone",
+    credit: "Madness - Sleeping With Sirens"
+  },
+  {
+    lyric: "I'm either half awake or half asleep I'm half the man I used to be I don't know much by but I'm tryin' To find a way to live when it feels like I'm dyin'",
+    credit: "Grave - Sleeping With Sirens"
+  },
+  {
+    lyric: "Why do I carry all this weight when I don't need it?  Keep me away, I'm trying to change 'Cause I've got one foot in the grave And if I slip, I can't be saved from all my demons",
+    credit: "Grave - Sleeping With Sirens"
+  },
+  {
+    lyric: "How the kingdom lights shined just for me and you And I was screaming, 'Long live all the magic we made' And bring on all the pretenders, I'm not afraid",
+    credit: "Long Live - Taylor Swift"
+  },
+  {
+    lyric: "And snakes and stones never broke my bones so",
+    credit: "You need to calm down - Taylor Swift"
+  },
+  {
+    lyric: "So touch me again I feel my shadow dissolving Will you cleanse me with pleasure?",
+    credit: "Rain - Sleep Token"
+  },
+  {
+    lyric: "The night belongs to you This bough has broken through I must be someone new",
+    credit: "Euclid - Sleep Token"
+  },
+  {
+    lyric: "So let us pray for more in 2024 We could grow old together We could love one another And then we'll from then be peace forevermore",
+    credit: "The future is a foreign land - Ghost"
+  },
+  {
+    lyric: "The blessings rain on battles in the heaven's arms And my polite advances won't last for long The eager apprehension is wearing off",
+    credit: "Missing Limbs - Sleep Token"
+  },
+  {
+    lyric: "And anytime you feel the pain, hey Jude, refrain Don't carry the world upon your shoulders",
+    credit: "Hey Jude - Beatles"
+  },
+  {
+    lyric: "When does a ripple become a tidal wave? When does the reason become the blame? When does a man become a monster?",
+    credit: "Just a man - Epic: The musical"
+  },
+  {
+    lyric: "You might be the one to take away the pain and let my mind go quiet And nothing else is quite the same as how I feel when I'm at your side",
+    credit: "Emergence - Sleep Token"
+  },
+  {
+    lyric: "Too young to get bitter over it all  Too old to retaliate like before Too blessed to be called ungrateful, I know So I'll keep dancing along to the rhythm",
+    credit: "Caramel - Sleep Token"
+  },
+  {
+    lyric: "And nobody told me I'd be begging for relief When what is silent to you feels like it's screaming to me Well, nobody told me I'd get tired of myself When it all looks like heaven, but it feels like hell",
+    credit: "Damocles - Sleep Token"
+  },
+  {
+    lyric: "But I can't always be killing the game No golden grand pianos or voices from the shadows Will do anything but feel the same",
+    credit: "Damocles - Sleep Token"
+  },
+  {
+    lyric: "And if this is love, then I am out of hesitation Head over heels at elevation Walking an inch above the pavement Taking it stride by stride together",
+    credit: "Past Self - Sleep Token"
+  },
+  {
+    lyric: "If this is real, then I am all up in a frenzy Not like before when I was empty Say that the story we tell is never-ending Taking it side by side together",
+    credit: "Past Self - Sleep Token"
+  },
+  {
+    lyric: "And the waters are warm Where they used to run freezing Where there used to be storms  My horizon is fleeting, I'm so tired inside I could sleep through a landslide, but I'm finally here And I'm not leaving this time",
+    credit: "Infinite Baths - Sleep Token"
+  },
+  {
+    lyric: "Infinite baths bursting colours when you laugh I've been running since I got here  But now I'm falling into infinite baths",
+    credit: "Infinite Baths - Sleep Token"
+  },
+];
+
+/* ALEATORIO */
+const random = Math.floor(Math.random() * quotations.length);
+
+/* MOSTRAR TEXTO (SIN ROMPER EL MARCO) */
+document.getElementById("content").innerHTML = `
+  <span class="lyric">"${quotations[random].lyric}"</span>
+  <span class="credit">― ${quotations[random].credit}</span>
+`;
+
+</script>
+
+</body>
