@@ -5,29 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Grimoire Quote</title>
 
-<!-- CINZEL -->
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
-
 <style>
 
+/* RESET + CENTRADO PARA NOTION */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+/* CONTENEDOR PRINCIPAL */
 #widget {
   position: relative;
-
   max-width: 350px;
   min-height: 400px;
-
-  margin: auto;
   padding: 70px 35px;
 
   text-align: center;
   font-family: "Cinzel", serif;
   font-size: 1.35em;
-  color: #2C3E50;
+  color: #2a2a2a;
   font-variant-caps: petite-caps;
   letter-spacing: 0.03em;
 }
 
-/* LÍNEAS VERTICALES RITUALES */
+/* LÍNEAS VERTICALES */
 #widget::before,
 #widget::after {
   content: "";
@@ -35,28 +41,38 @@
   top: 90px;
   bottom: 90px;
   width: 1.5px;
-  background:
-    linear-gradient(
-      to bottom,
-      transparent 0%,
-      #2a2a2a 10%,
-      transparent 20%,
-      #2a2a2a 35%,
-      transparent 50%,
-      #2a2a2a 65%,
-      transparent 80%,
-      #2a2a2a 90%,
-      transparent 100%
-    );
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #2a2a2a 10%,
+    transparent 20%,
+    #2a2a2a 35%,
+    transparent 50%,
+    #2a2a2a 65%,
+    transparent 80%,
+    #2a2a2a 90%,
+    transparent 100%
+  );
   opacity: 0.8;
 }
 
 #widget::before { left: 8px; }
 #widget::after  { right: 8px; }
 
+/* ESQUINAS */
+.corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  opacity: 0.7;
+}
 
+.tl { top: 10px; left: 10px; border-top: 1.5px solid #2a2a2a; border-left: 1.5px solid #2a2a2a; }
+.tr { top: 10px; right: 10px; border-top: 1.5px solid #2a2a2a; border-right: 1.5px solid #2a2a2a; }
+.bl { bottom: 10px; left: 10px; border-bottom: 1.5px solid #2a2a2a; border-left: 1.5px solid #2a2a2a; }
+.br { bottom: 10px; right: 10px; border-bottom: 1.5px solid #2a2a2a; border-right: 1.5px solid #2a2a2a; }
 
-/* SÍMBOLOS */
+/* DECORACIÓN */
 .decor {
   font-size: 0.9em;
   letter-spacing: 6px;
@@ -71,12 +87,11 @@
 /* TEXTO */
 .lyric {
   display: block;
-  margin-top: 40px;
   line-height: 1.6;
   white-space: pre-line;
 }
 
-/* AUTOR */
+/* CRÉDITO */
 .credit {
   display: block;
   margin-top: 25px;
@@ -93,15 +108,12 @@
 <div id="widget">
   <span class="corner tl"></span>
   <span class="corner tr"></span>
-
-  <div class="decor"></div>
-
-  <div id="content"></div>
-
-  <div class="decor"></div>
-
   <span class="corner bl"></span>
   <span class="corner br"></span>
+
+  <div class="decor"></div>
+  <div id="content"></div>
+  <div class="decor"></div>
 </div>
 
 <script>
@@ -274,7 +286,6 @@ document.getElementById("content").innerHTML = `
   <span class="lyric">"${quotations[random].lyric}"</span>
   <span class="credit">― ${quotations[random].credit}</span>
 `;
-
 </script>
 
 </body>
